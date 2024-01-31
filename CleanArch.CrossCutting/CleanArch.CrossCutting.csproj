@@ -7,11 +7,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="AppDependecies\" />
+      <Compile Remove="Class1.cs" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="Class1.cs" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CleanArch.Application\CleanArch.Application.csproj" />
+      <ProjectReference Include="..\CleanArch.Domain\CleanArch.Domain.csproj" />
+      <ProjectReference Include="..\CleanArch.Infrastructure\CleanArch.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
