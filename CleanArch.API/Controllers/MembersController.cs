@@ -1,4 +1,5 @@
 ﻿using CleanArch.Application.Members.Commands;
+using CleanArch.Application.Members.Queries;
 using CleanArch.Domain.Abstractions;
 using CleanArch.Domain.Entities;
 using MediatR;
@@ -22,15 +23,13 @@ public class MembersController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetMembers()
     {
-        var members = await _unitOfWork.MemberRepository.GetAll();
-
-        return Ok(members);
+        return Ok(await _mediator.Send(new GetMembersQuery()));
     }
     
     [HttpGet("{id}")]
     public async Task<IActionResult> GetMember(int id)
     {
-        var member = await _unitOfWork.MemberRepository.GetMemberById(id);
+        var member = await _mediator.Send(new GetMemberById(id));
         return member != null ? Ok(member) : NotFound("Member not found.");
     }
     
@@ -48,7 +47,7 @@ public class MembersController : ControllerBase
         command.Id = id;
         var updatedMember = await _mediator.Send(command);
 
-        return updatedMember != null ? Ok(updatedMember) : NotFound("Member not found.");
+        return updatedMember != null ? NoContent() : NotFound("Member not found.");
     }
     
     [HttpDelete("{id}")]
