@@ -1,7 +1,5 @@
 ﻿using CleanArch.Application.Members.Commands;
 using CleanArch.Application.Members.Queries;
-using CleanArch.Domain.Abstractions;
-using CleanArch.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,14 +9,8 @@ namespace CleanArch.API.Controllers;
 [ApiController]
 public class MembersController : ControllerBase
 {
-    private readonly IUnitOfWork _unitOfWork;
     private readonly IMediator _mediator;
-
-    public MembersController(IUnitOfWork unitOfWork, IMediator mediator)
-    {
-        _unitOfWork = unitOfWork;
-        _mediator = mediator;
-    }
+    public MembersController(IMediator mediator) => _mediator = mediator;
     
     [HttpGet]
     public async Task<IActionResult> GetMembers()
