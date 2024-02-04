@@ -10,4 +10,16 @@
       <Compile Remove="Class1.cs" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="12.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Members\Queries\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CleanArch.Domain\CleanArch.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -21,6 +21,9 @@ public static class DependecyInjection
         services.AddScoped<IMemberRepository, MemberRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+        var handlers = AppDomain.CurrentDomain.Load("CleanArch.Application");
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(handlers));
+
         return services;
     }
 }

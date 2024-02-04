@@ -15,7 +15,7 @@ public sealed class Member : Entity
 
     public bool? IsActive { get; private set; }
 
-    public Member(string firstName, string lastName, string gender, string email, bool active)
+    public Member(string firstName, string lastName, string gender, string email, bool? active)
     {
         ValidateDomain(firstName, lastName, gender, email, active);
     }
@@ -23,14 +23,14 @@ public sealed class Member : Entity
     public Member(){}
     
     [JsonConstructor]
-    public Member(int id, string firstName, string lastName, string gender, string email, bool active)
+    public Member(int id, string firstName, string lastName, string gender, string email, bool? active)
     {
         DomainValidation.When(id < 0, "Invalid Id value.");
         Id = id;
         ValidateDomain(firstName, lastName, gender, email, active);
     }
 
-    public void Update(string firstName, string lastName, string gender, string email, bool active)
+    public void Update(string firstName, string lastName, string gender, string email, bool? active)
     {
         ValidateDomain(firstName, lastName, gender, email, active);
     }
