@@ -1,4 +1,9 @@
 
+## Aprendizados
+
+Através desse projeto, consegui aprofundar meus conhecimentos sobre Clean Architecture e aprender um pouco mais sobre alguns padrões e boas práticas, como a utilização da biblioteca Mediatr, a separação de uma camada para alocar os componentes de injeção de dependência, criação de uma classe de configuração para as entidades e a executar as migrations na camada de infrastructure.
+
+
 ## Documentação da API
 
 #### Retorna todos os Members
