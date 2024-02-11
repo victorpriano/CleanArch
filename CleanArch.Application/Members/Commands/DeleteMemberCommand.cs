@@ -4,7 +4,7 @@ using MediatR;
 
 namespace CleanArch.Application.Members.Commands;
 
-public sealed class DeleteMemberCommand : IRequest<Member>
+public sealed class DeleteMemberCommand : MemberCommandBase
 {
     public int Id { get; set; }
 

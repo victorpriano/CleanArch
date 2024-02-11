@@ -11,20 +11,24 @@ public class MembersController : ControllerBase
 {
     private readonly IMediator _mediator;
     public MembersController(IMediator mediator) => _mediator = mediator;
-    
+
     [HttpGet]
     public async Task<IActionResult> GetMembers()
     {
-        return Ok(await _mediator.Send(new GetMembersQuery()));
+        var query = new GetMembersQuery();
+        var members = await _mediator.Send(query);
+        return Ok(members);
     }
-    
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetMember(int id)
     {
-        var member = await _mediator.Send(new GetMemberById(id));
+        var query = new GetMemberById(id);
+        var member = await _mediator.Send(query);
+
         return member != null ? Ok(member) : NotFound("Member not found.");
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> CreateMember([FromBody] CreateMemberCommand command)
     {

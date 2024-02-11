@@ -9,20 +9,20 @@ public record GetMemberById(int id) : IRequest<Member>;
 
 public class GetMembersHandler : IRequestHandler<GetMembersQuery, IEnumerable<Member>>
 {
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IMemberDapperRepository _memberDapperRepository;
 
-    public GetMembersHandler(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
+    public GetMembersHandler(IMemberDapperRepository memberDapperRepository) => _memberDapperRepository = memberDapperRepository;
 
     public async Task<IEnumerable<Member>> Handle(GetMembersQuery request, CancellationToken cancellationToken)
-        => await _unitOfWork.MemberRepository.GetAll();
+        => await _memberDapperRepository.GetMembers();
 }
 
 public class GetMemberByIdHandler : IRequestHandler<GetMemberById, Member>
 {
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IMemberDapperRepository _memberDapperRepository;
     
-    public GetMemberByIdHandler(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
+    public GetMemberByIdHandler(IMemberDapperRepository memberDapperRepository) => _memberDapperRepository = memberDapperRepository;
 
     public async Task<Member> Handle(GetMemberById request, CancellationToken cancellationToken)
-        => await _unitOfWork.MemberRepository.GetMemberById(request.id);
+        => await _memberDapperRepository.GetMemberById(request.id);
 }
