@@ -1,11 +1,13 @@
 ﻿using CleanArch.Domain.Abstractions;
 using CleanArch.Infrastructure.Context;
 using CleanArch.Infrastructure.Repositories;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
 using System.Data;
+using System.Reflection;
 
 namespace CleanArch.CrossCutting.AppDependecies;
 
@@ -34,6 +36,8 @@ public static class DependecyInjection
 
         var handlers = AppDomain.CurrentDomain.Load("CleanArch.Application");
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(handlers));
+
+        services.AddValidatorsFromAssembly(Assembly.Load("CleanArch.Application"));
 
         return services;
     }
